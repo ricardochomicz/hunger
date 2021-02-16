@@ -14,6 +14,11 @@ class Plan extends Model
 
     protected $fillable = ['name', 'price', 'description', 'url'];
 
+    public function details()
+    {
+        return $this->hasMany(DetailPlan::class);
+    }
+
     public function search($filter)
     {
         return $this->where('name', 'LIKE', "%$filter%")->paginate();

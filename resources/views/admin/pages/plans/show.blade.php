@@ -7,6 +7,7 @@
 @stop
 
 @section('content')
+@include('admin.includes.alerts')
     <div class="card">
         <div class="card-body">
 

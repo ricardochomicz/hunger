@@ -26,21 +26,22 @@
         <table class="table table-condensed">
             <thead>
                 <tr>
-                    <th>Nome</th>
-                    <th>Valor</th>
-                    <th>Descrição</th>
-                    <th width="150">Ação</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Valor</th>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Ação</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($plans as $plan)
                 <tr>
-                    <td>{{$plan->name}}</td>
-                    <td>R$ {{ number_format($plan->price, 2,',','.') }}</td>
-                    <td>{{$plan->description}}</td>
-                    <td>
-                        <a href="{{route('plans.show', $plan->id)}}" class="btn btn-primary"><i class="fas fa-binoculars"></i></a>
-                        <a href="{{route('plans.edit', $plan->id)}}" class="btn btn-info"><i class="fas fa-pencil-alt"></i></a>
+                    <td class="align-middle">{{$plan->name}}</td>
+                    <td class="align-middle">R$ {{ number_format($plan->price, 2,',','.') }}</td>
+                    <td class="align-middle">{{$plan->description}}</td>
+                    <td class="align-middle">
+                        <a href="{{route('details.plan.index', $plan->id)}}" class="btn btn-secondary btn-sm"><i class="fas fa-tags"></i></a>
+                        <a href="{{route('plans.show', $plan->id)}}" class="btn btn-primary btn-sm"><i class="fas fa-binoculars"></i></a>
+                        <a href="{{route('plans.edit', $plan->id)}}" class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i></a>
                     </td>
                 </tr>
                 @endforeach
