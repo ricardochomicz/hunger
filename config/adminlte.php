@@ -229,6 +229,16 @@ return [
             'url' => 'admin/plans',
             'icon' => 'fas fa-tag mr-1',
         ],
+        [
+            'text' => 'Perfis',
+            'url' => 'admin/profiles',
+            'icon' => 'fas fa-id-badge mr-1',
+        ],
+        [
+            'text' => 'Permissões',
+            'url' => 'admin/permissions',
+            'icon' => 'fas fa-lock mr-1',
+        ]
     ],
 
     /*

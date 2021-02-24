@@ -28,7 +28,7 @@
                     </ul>
                     <form action="{{route('plans.destroy', $plan->id)}}" method="POST">
                         @csrf
-                        <a href="{{route('plans.index')}}" class="btn btn-sm btn-primary"><b>Voltar</b></a>
+                        <a href="{{route('plans.index')}}" class="btn btn-sm btn-primary">Voltar</a>
                         @method('DELETE')
                         <button type="submit" class="btn btn-sm btn-danger">Deletar</button>
                     </form>
