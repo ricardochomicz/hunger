@@ -24,7 +24,7 @@
             <a href="{{ route('plans.create') }}" class="btn btn-sm btn-dark float-right"><i class="fas fa-plus mr-1"></i>
                 Novo</a>
         </div>
-        <div class="card-body">
+        <div class="card-body table-responsive p-0">
             
                 <table class="table table-condensed table-borderless">
                     <thead>
@@ -63,4 +63,4 @@
 
         </div>
     </div>
-@stop
+@endsection
