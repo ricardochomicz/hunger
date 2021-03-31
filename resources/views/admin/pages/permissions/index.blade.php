@@ -44,7 +44,7 @@
                                 <a href="{{ route('permissions.edit', $permission->id) }}"
                                     class="btn btn-info btn-sm">Editar</a>
                                 <a href="{{ route('permission.profiles', $permission->id) }}"
-                                    class="btn btn-default btn-sm"><i class="fas fa-address-card"></i></a>
+                                    class="btn btn-default btn-sm">Perfil</a>
                             </td>
                         </tr>
                     @endforeach

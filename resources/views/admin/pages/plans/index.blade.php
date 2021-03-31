@@ -8,9 +8,8 @@
         <li class="breadcrumb-item"><a href="{{ route('plans.index') }}">Planos</a></li>
     </ol>
     <h1>Planos</h1>
-
-
 @stop
+
 
 @section('content')
     <div class="card">
@@ -25,8 +24,8 @@
                 Novo</a>
         </div>
         <div class="card-body table-responsive p-0">
-            
-                <table class="table table-condensed table-borderless">
+
+                <table class="table table-condensed dataTable dataTable table-borderless dtr-inline">
                     <thead>
                         <tr class="table-active">
                             <th scope="col">Nome</th>
@@ -46,6 +45,7 @@
                                         class="btn btn-secondary btn-sm">Detalhes</a>
                                     <a href="{{ route('plans.show', $plan->id) }}" class="btn btn-primary btn-sm">Ver</a>
                                     <a href="{{ route('plans.edit', $plan->id) }}" class="btn btn-info btn-sm">Editar</a>
+                                    <a href="{{ route('plans.profiles', $plan->id) }}" class="btn btn-default btn-sm"><i class="fas fa-lock"></i></a>
                                 </td>
                             </tr>
                         @endforeach
@@ -53,7 +53,7 @@
                 </table>
             
         </div>
-        <div class="card-footer pagination-sm">
+        <div class="pagination-sm">
 
             @if (isset($filters))
                 {!! $plans->appends($filters)->links() !!}
