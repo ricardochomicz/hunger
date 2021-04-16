@@ -2,10 +2,14 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
 use App\Models\Company;
 use App\Models\Plan;
+use App\Models\Product;
+use App\Observers\CategoryObserver;
 use App\Observers\CompanyObserver;
 use App\Observers\PlanObserver;
+use App\Observers\ProductObserver;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
@@ -31,5 +35,7 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrap();
         Plan::observe(PlanObserver::class);
         Company::observe(CompanyObserver::class);
+        Category::observe(CategoryObserver::class);
+        Product::observe(ProductObserver::class);
     }
 }

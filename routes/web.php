@@ -7,10 +7,53 @@ use App\Http\Controllers\Admin\PlanController;
 use App\Http\Controllers\Admin\ACL\PermissionController;
 use App\Http\Controllers\Admin\ACL\PermissionProfileController;
 use App\Http\Controllers\Admin\ACL\PlanProfileController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CategoryProductController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\TableController;
+use App\Http\Controllers\Admin\UserController;
 
 Route::prefix('admin')
     ->middleware('auth')
     ->group(function () {
+
+         /**
+         * Route Users
+         */
+        Route::any('users/search', [UserController::class, 'search'])->name('users.search');
+        Route::resource('users', UserController::class);
+
+         /**
+         * Route Tables
+         */
+        Route::any('tables/search', [TableController::class, 'search'])->name('tables.search');
+        Route::resource('tables', TableController::class);
+
+
+        /**
+         * Route Category x Product
+         */
+
+        Route::get('products/{id}/category/{idCategories}/detach', [CategoryProductController::class, 'detachCategoryProduct'])->name('products.categories.detach');
+        Route::post('products/{id}/categories', [CategoryProductController::class, 'attachCategoriesProduct'])->name('products.categories.attach');
+        Route::any('products/{id}/categories/create', [CategoryProductController::class, 'categoriesAvailable'])->name('products.categories.available');
+        Route::get('products/{id}/categories', [CategoryProductController::class, 'categories'])->name('products.categories');
+        Route::get('categories/{id}/products', [CategoryProductController::class, 'products'])->name('categories.products');
+
+
+
+        /**
+         * Route Categories
+         */
+        Route::any('categories/search', [CategoryController::class, 'search'])->name('categories.search');
+        Route::resource('categories', CategoryController::class);
+
+        /**
+         * Route Products
+         */
+        Route::any('products/search', [ProductController::class, 'search'])->name('products.search');
+        Route::resource('products', ProductController::class);
+
 
         /**
          * Route Plan x Profile

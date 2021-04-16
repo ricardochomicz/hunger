@@ -238,6 +238,26 @@ return [
             'text' => 'Permissões',
             'url' => 'admin/permissions',
             'icon' => 'fas fa-lock mr-1',
+        ],
+        [
+            'text' => 'Usuários',
+            'url' => 'admin/users',
+            'icon' => 'fas fa-users mr-1',
+        ],
+        [
+            'text' => 'Categorias',
+            'url' => 'admin/categories',
+            'icon' => 'fas fa-layer-group mr-1',
+        ],
+        [
+            'text' => 'Produtos',
+            'url' => 'admin/products',
+            'icon' => 'fas fa-barcode mr-1',
+        ],
+        [
+            'text' => 'Mesas',
+            'url' => 'admin/tables',
+            'icon' => 'fas fa-tablet mr-1',
         ]
     ],
 

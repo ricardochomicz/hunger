@@ -21,7 +21,7 @@
         {{-- CNPJ field --}}
         <div class="input-group mb-3">
             <input type="text" name="cnpj" class="form-control {{ $errors->has('cnpj') ? 'is-invalid' : '' }}"
-                   value="{{ old('cnpj') }}" placeholder="CNPJ" autofocus>
+                   value="{{ old('cnpj') }}" placeholder="CNPJ" autofocus maxlength="14">
             <div class="input-group-append">
                 <div class="input-group-text">
                     <span class="fas fa-file-alt {{ config('adminlte.classes_auth_icon', '') }}"></span>
