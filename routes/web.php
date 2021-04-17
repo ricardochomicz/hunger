@@ -12,10 +12,17 @@ use App\Http\Controllers\Admin\CategoryProductController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\TableController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\CompanyController;
 
 Route::prefix('admin')
     ->middleware('auth')
     ->group(function () {
+
+
+        /**
+         * Route Company
+         */
+        Route::resource('companies', CompanyController::class);
 
 
          /**

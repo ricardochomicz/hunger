@@ -225,6 +225,12 @@ return [
 
     'menu' => [
         [
+            'text' => 'Empresa',
+            'url' => 'admin/companies',
+            'icon' => 'fas fa-building mr-1',
+            'can' => 'company'
+        ],
+        [
             'text' => 'Planos',
             'url' => 'admin/plans',
             'icon' => 'fas fa-tag mr-1',

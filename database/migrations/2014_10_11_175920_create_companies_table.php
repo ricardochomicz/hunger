@@ -20,7 +20,7 @@ class CreateCompaniesTable extends Migration
             $table->string('cnpj')->unique();
             $table->string('name');
             $table->string('email');
-            $table->string('url')->unique();
+            $table->string('url');
             $table->string('logo')->nullable();
 
             //Status N não tem acesso ao sistema

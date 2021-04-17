@@ -27,7 +27,7 @@ class CompanyObserver
      */
     public function updating(Company $company)
     {
-        $company->url = Str::kebab($this->name);
+        $company->url = Str::kebab($company->name);
     }
 
     
