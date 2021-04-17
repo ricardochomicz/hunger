@@ -228,36 +228,43 @@ return [
             'text' => 'Planos',
             'url' => 'admin/plans',
             'icon' => 'fas fa-tag mr-1',
+            'can' => 'view_admin'
         ],
         [
             'text' => 'Perfis',
             'url' => 'admin/profiles',
             'icon' => 'fas fa-id-badge mr-1',
+            'can' => 'view_admin'
         ],
         [
             'text' => 'Permissões',
             'url' => 'admin/permissions',
             'icon' => 'fas fa-lock mr-1',
+            'can' => 'view_admin'
         ],
         [
             'text' => 'Usuários',
             'url' => 'admin/users',
             'icon' => 'fas fa-users mr-1',
+            'can' => 'view_compras'
         ],
         [
             'text' => 'Categorias',
             'url' => 'admin/categories',
             'icon' => 'fas fa-layer-group mr-1',
+            'can' => 'view_financeiro'
         ],
         [
             'text' => 'Produtos',
             'url' => 'admin/products',
             'icon' => 'fas fa-barcode mr-1',
+            'can' => 'view_administrativo'
         ],
         [
             'text' => 'Mesas',
             'url' => 'admin/tables',
             'icon' => 'fas fa-tablet mr-1',
+            'can' => 'view_sales'
         ]
     ],
 

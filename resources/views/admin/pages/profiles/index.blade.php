@@ -41,7 +41,7 @@
                             <td class="align-middle text-center">
                                 <a href="{{ route('profiles.show', $profile->id) }}" class="btn btn-primary btn-sm">Ver</a>
                                 <a href="{{ route('profiles.edit', $profile->id) }}" class="btn btn-info btn-sm">Editar</a>
-                                <a href="{{ route('profiles.plans', $profile->id) }}"
+                                <a href="{{ route('profiles.permissions', $profile->id) }}"
                                     class="btn btn-default btn-sm">Perfis</a>
                             </td>
                         </tr>

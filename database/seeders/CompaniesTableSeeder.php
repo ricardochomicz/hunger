@@ -15,12 +15,12 @@ class CompaniesTableSeeder extends Seeder
      */
     public function run()
     {
-        $plan = Plan::first();
-        $plan->companies()->create([
-            'cnpj' => 10805615000149,
-            'name' => 'PGTelecom',
-            'url' => 'pgtelecom',
-            'email' => 'pgtelecom@email.com'
-        ]);
+        // $plan = Plan::first();
+        // $plan->companies()->create([
+        //     'cnpj' => 10805615000149,
+        //     'name' => 'PGTelecom',
+        //     'url' => 'pgtelecom',
+        //     'email' => 'pgtelecom@email.com'
+        // ]);
     }
 }

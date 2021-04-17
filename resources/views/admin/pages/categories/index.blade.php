@@ -20,6 +20,7 @@
                     value="{{ $filters['name'] ?? '' }}">
                 <button class="btn btn-sm btn-dark" type="submit"><i class="fas fa-search mr-1"></i> Filtrar</button>
             </form>
+            
             <a href="{{ route('categories.create') }}" class="btn btn-sm btn-dark float-right"><i class="fas fa-plus mr-1"></i>
                 Novo</a>
         </div>
