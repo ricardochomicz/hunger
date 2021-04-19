@@ -14,7 +14,7 @@ class UserController extends Controller
     {
         $this->repository = $user;
 
-        $this->middleware(['can:view_administrativo']);
+        $this->middleware(['can:Usuários']);
     }
 
 

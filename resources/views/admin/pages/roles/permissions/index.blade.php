@@ -1,13 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', 'Permissões')
+@section('title', 'Permissões do Perfil')
 
 @section('content_header')
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="">Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('permissions.index') }}">Permissões</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('roles.index') }}">Permissões do Cargo</a></li>
     </ol>
-    <h1>Permissões</h1>
+    <h1>Permissões do Cargo - {{ $role->name }}</h1>
 
 
 @stop
@@ -15,13 +15,7 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <form action="{{ route('permissions.search') }}" class="form-inline float-left" method="POST">
-                @csrf
-                <input type="search" name="filter" class="form-control form-control-sm" placeholder="Pesquisa"
-                    value="{{ $filters['name'] ?? '' }}">
-                <button class="btn btn-sm btn-dark" type="submit"><i class="fas fa-search mr-1"></i> Filtrar</button>
-            </form>
-            <a href="{{ route('permissions.create') }}" class="btn btn-sm btn-dark float-right"><i
+            <a href="{{ route('roles.permissions.available', $role->id) }}" class="btn btn-sm btn-dark float-right"><i
                     class="fas fa-plus mr-1"></i> Novo</a>
         </div>
         <div class="card-body table-responsive p-0">
@@ -39,14 +33,8 @@
                             <td class="align-middle">{{ $permission->name }}</td>
                             <td class="align-middle">{{ $permission->description }}</td>
                             <td class="align-middle text-center">
-                                <a href="{{ route('permissions.show', $permission->id) }}"
-                                    class="btn btn-primary btn-sm">Ver</a>
-                                <a href="{{ route('permissions.edit', $permission->id) }}"
-                                    class="btn btn-info btn-sm">Editar</a>
-                                <a href="{{ route('permission.profiles', $permission->id) }}"
-                                    class="btn btn-default btn-sm" title="Perfis">Perfil</a>
-                                    <a href="{{ route('permission.roles', $permission->id) }}"
-                                        class="btn btn-default btn-sm" title="Cargos">Cargos</a>
+                                <a href="{{ route('roles.permission.detach', [$role->id, $permission->id]) }}"
+                                    class="btn btn-danger btn-sm">Desvincular</a>
                             </td>
                         </tr>
                     @endforeach
@@ -55,11 +43,13 @@
 
         </div>
         <div class="card-footer pagination-sm">
+
             @if (isset($filters))
                 {!! $permissions->appends($filters)->links() !!}
             @else
                 {!! $permissions->links() !!}
             @endif
+
         </div>
     </div>
-@endsection
+@stop

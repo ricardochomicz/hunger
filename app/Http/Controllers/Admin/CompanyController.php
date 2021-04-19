@@ -16,7 +16,7 @@ class CompanyController extends Controller
     {
         $this->repository = $company;
 
-        $this->middleware('can:company');
+        $this->middleware('can:Empresa');
     }
 
     public function index()

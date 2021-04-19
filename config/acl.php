@@ -1,7 +1,7 @@
 <?php
 return [
   'admins' => [
-    'admin@email.com',
+    //'admin@email.com',
     'email@email.com'
   ]
 ];

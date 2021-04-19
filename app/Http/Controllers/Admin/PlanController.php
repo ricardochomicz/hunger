@@ -17,7 +17,7 @@ class PlanController extends Controller
     {
         $this->repository = $plan;
 
-        $this->middleware(['can:view_plan']);
+        $this->middleware(['can:Planos']);
     }
 
     public function index()

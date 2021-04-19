@@ -17,7 +17,7 @@ class ProductController extends Controller
     {
         $this->repository = $product;
 
-        $this->middleware(['can:view_financeiro']);
+        $this->middleware(['can:Produtos']);
     }
 
     /**

@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\Admin\ACL\RoleController;
 use App\Http\Controllers\Admin\ACL\ProfileController;
 use App\Http\Controllers\Admin\DetailPlanController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\PlanController;
 use App\Http\Controllers\Admin\ACL\PermissionController;
 use App\Http\Controllers\Admin\ACL\PermissionProfileController;
+use App\Http\Controllers\Admin\ACL\PermissionRoleController;
 use App\Http\Controllers\Admin\ACL\PlanProfileController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CategoryProductController;
@@ -17,6 +19,22 @@ use App\Http\Controllers\Admin\CompanyController;
 Route::prefix('admin')
     ->middleware('auth')
     ->group(function () {
+
+        /**
+         * Route Permission x Role
+         */
+        Route::get('roles/{id}/permission/{idPermission}/detach', [PermissionRoleController::class, 'detachPermissionRole'])->name('roles.permission.detach');
+        Route::post('roles/{id}/permissions', [PermissionRoleController::class, 'attachPermissionsRole'])->name('roles.permissions.attach');
+        Route::any('roles/{id}/permissions/create', [PermissionRoleController::class, 'permissionsAvailable'])->name('roles.permissions.available');
+        Route::get('roles/{id}/permissions', [PermissionRoleController::class, 'permissions'])->name('roles.permissions');
+        Route::get('permissions/{id}/role', [PermissionRoleController::class, 'roles'])->name('permission.roles');
+
+
+        /**
+         * Route Roles
+         */
+        Route::any('roles/search', [RoleController::class, 'search'])->name('roles.search');
+        Route::resource('roles', RoleController::class);
 
 
         /**

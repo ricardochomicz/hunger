@@ -16,7 +16,7 @@ class CategoryController extends Controller
     {
         $this->repository = $category;
 
-        $this->middleware(['can:view_financeiro']);
+        $this->middleware(['can:Categorias']);
     }
 
     /**

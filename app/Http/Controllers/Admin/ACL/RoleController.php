@@ -1,21 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\ACL;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreUpdateTable;
-use App\Models\Table;
+use App\Http\Requests\StoreUpdateRoles;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
-class TableController extends Controller
+class RoleController extends Controller
 {
 
     protected $repository;
 
-    public function __construct(Table $table)
+    public function __construct(Role $role)
     {
-        $this->repository = $table;
-        $this->middleware('can:Mesas');
+        $this->repository = $role;
+        $this->middleware('can:Cargos');
     }
     /**
      * Display a listing of the resource.
@@ -24,8 +24,8 @@ class TableController extends Controller
      */
     public function index()
     {
-        $tables = $this->repository->latest()->paginate();
-        return view('admin.pages.tables.index', compact('tables'));
+        $roles = $this->repository->paginate();
+        return view('admin.pages.roles.index', compact('roles'));
     }
 
     /**
@@ -35,7 +35,7 @@ class TableController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.tables.create');
+        return view('admin.pages.roles.create');
     }
 
     /**
@@ -44,12 +44,10 @@ class TableController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreUpdateTable $request)
+    public function store(StoreUpdateRoles $request)
     {
-        $data = $request->all();
-        $data['company_id'] = auth()->user()->company_id;
-        $this->repository->create($data);
-        return redirect()->route('tables.index');
+        $this->repository->create($request->all());
+        return redirect()->route('roles.index');
     }
 
     /**
@@ -60,10 +58,11 @@ class TableController extends Controller
      */
     public function show($id)
     {
-        if (!$table = $this->repository->find($id)) {
+        if(!$role = $this->repository->find($id))
+        {
             return redirect()->back();
         }
-        return view('admin.pages.tables.show', compact('table'));
+        return view('admin.pages.roles.show', compact('role'));
     }
 
     /**
@@ -74,10 +73,12 @@ class TableController extends Controller
      */
     public function edit($id)
     {
-        if (!$table = $this->repository->find($id)) {
+        if(!$role = $this->repository->find($id))
+        {
             return redirect()->back();
         }
-        return view('admin.pages.tables.edit', compact('table'));
+
+        return view('admin.pages.roles.edit', compact('role'));
     }
 
     /**
@@ -87,13 +88,14 @@ class TableController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreUpdateTable $request, $id)
+    public function update(StoreUpdateRoles $request, $id)
     {
-        if (!$table = $this->repository->find($id)) {
+        if(!$role = $this->repository->find($id))
+        {
             return redirect()->back();
         }
-        $table->update($request->all());
-        return redirect()->route('tables.index');
+        $role->update($request->all());
+        return redirect()->route('roles.index');
     }
 
     /**
@@ -104,24 +106,26 @@ class TableController extends Controller
      */
     public function destroy($id)
     {
-        if (!$table = $this->repository->find($id)) {
+        if(!$role = $this->repository->find($id))
+        {
             return redirect()->back();
         }
-        $table->delete();
-        return redirect()->route('tables.index');
+
+        $role->delete();
+        return redirect()->route('roles.index');
     }
 
     public function search(Request $request)
     {
         $filters = $request->only('filter');
-        $tables = $this->repository
+        $roles = $this->repository
             ->where(function ($query) use ($request) {
                 if ($request->filter) {
-                        $query->orWhere('identify', 'LIKE', "%{$request->filter}%");
+                    $query->where('name', $request->filter)
+                        ->orWhere('description', 'LIKE', "%{$request->filter}%");
                 }
             })
-            ->latest()
             ->paginate();
-        return view('admin.pages.tables.index', compact('tables', 'filters'));    
+        return view('admin.pages.roles.index', compact('roles', 'filters'));    
     }
 }

@@ -228,50 +228,57 @@ return [
             'text' => 'Empresa',
             'url' => 'admin/companies',
             'icon' => 'fas fa-building mr-1',
-            'can' => 'company'
+            'can' => 'Empresa'
         ],
         [
             'text' => 'Planos',
             'url' => 'admin/plans',
             'icon' => 'fas fa-tag mr-1',
-            'can' => 'view_admin'
+            'can' => 'Planos'
         ],
         [
             'text' => 'Perfis',
             'url' => 'admin/profiles',
             'icon' => 'fas fa-id-badge mr-1',
-            'can' => 'view_admin'
+            'can' => 'Perfil'
+        ],
+        [
+            'text' => 'Cargos',
+            'url' => 'admin/roles',
+            'icon' => 'fas fa-id-card-alt mr-1',
+            'can' => 'Cargos'
         ],
         [
             'text' => 'Permissões',
             'url' => 'admin/permissions',
             'icon' => 'fas fa-lock mr-1',
-            'can' => 'view_admin'
+            'can' => 'Permissão'
         ],
         [
             'text' => 'Usuários',
             'url' => 'admin/users',
             'icon' => 'fas fa-users mr-1',
-            'can' => 'view_compras'
+            'can' => 'Usuários'
         ],
         [
             'text' => 'Categorias',
             'url' => 'admin/categories',
             'icon' => 'fas fa-layer-group mr-1',
-            'can' => 'view_financeiro'
+            'can' => 'Categorias'
         ],
         [
             'text' => 'Produtos',
             'url' => 'admin/products',
             'icon' => 'fas fa-barcode mr-1',
-            'can' => 'view_administrativo'
+            'can' => 'Produtos'
         ],
         [
             'text' => 'Mesas',
             'url' => 'admin/tables',
             'icon' => 'fas fa-tablet mr-1',
-            'can' => 'view_sales'
-        ]
+            'can' => 'Mesas'
+        ],
+        
     ],
 
     /*
