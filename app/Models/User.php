@@ -61,4 +61,29 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Company::class);
     }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+
+    /**
+     * Permission not linked with this profile
+     */
+
+    public function rolesAvailable($filter = null)
+    {
+        $users = Role::whereNotIn('roles.id', function ($query) {
+            $query->select('role_user.role_id');
+            $query->from('role_user');
+            $query->whereRaw("role_user.user_id={$this->id}");
+        })
+        ->where(function($queryFilter) use ($filter){
+            if($filter)
+                $queryFilter->where('roles.name', 'LIKE', "%{$filter}%");
+        })
+            ->paginate();
+
+        return $users;
+    }
 }

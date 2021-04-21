@@ -41,6 +41,8 @@
                                 <td class="align-middle text-center">
                                     <a href="{{ route('users.show', $user->id) }}" class="btn btn-primary btn-sm">Ver</a>
                                     <a href="{{ route('users.edit', $user->id) }}" class="btn btn-info btn-sm">Editar</a>
+                                    <a href="{{ route('users.roles', $user->id) }}"
+                                        class="btn btn-default btn-sm"><i class="fas fa-lock"></i></a>
                                 </td>
                             </tr>
                         @endforeach

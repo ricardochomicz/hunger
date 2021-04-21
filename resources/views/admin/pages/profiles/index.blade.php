@@ -51,13 +51,11 @@
 
         </div>
         <div class="card-footer pagination-sm">
-
             @if (isset($filters))
                 {!! $profiles->appends($filters)->links() !!}
             @else
                 {!! $profiles->links() !!}
             @endif
-
         </div>
     </div>
 @endsection

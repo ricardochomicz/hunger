@@ -1,13 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', 'Permissões disponiveis do perfil {$profile->name}')
+@section('title', 'Cargos disponiveis do Usuário {$user->name}')
 
 @section('content_header')
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="">Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('profiles.index') }}">Permissões do Perfil</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('roles.index') }}" class="active">Cargos Usuário</a></li>
     </ol>
-    <h1>Permissões disponiveis do perfil - {{ $profile->name }}</h1>
+    <h1>Cargos disponiveis do Usuário - {{ $user->name }}</h1>
 
 
 @stop
@@ -15,7 +15,8 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <form action="{{ route('plans.profiles.available', $plan->id) }}" class="form-inline float-left" method="POST">
+            <form action="{{ route('users.roles.available', $user->id) }}" class="form-inline float-left"
+                method="POST">
                 @csrf
                 <input type="search" name="filter" class="form-control form-control-sm" placeholder="Pesquisa"
                     value="{{ $filters['name'] ?? '' }}">
@@ -32,17 +33,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <form action="{{ route('profiles.permissions.attach', $profile->id) }}" method="POST">
+                    <form action="{{ route('users.roles.attach', $user->id) }}" method="POST">
                         @csrf
 
-                        @foreach ($permissions as $permission)
+                        @foreach ($roles as $role)
                             <tr>
                                 <td class="align-middle">
-                                    <input type="checkbox" name="permissions[]" id="customCheckbox1"
-                                        value="{{ $permission->id }}">
+                                    <input type="checkbox" name="roles[]" id="customCheckbox1"
+                                        value="{{ $role->id }}">
                                 </td>
-                                <td class="align-middle">{{ $permission->name }}</td>
-                                <td class="align-middle">{{ $permission->description }}</td>
+                                <td class="align-middle">{{ $role->name }}</td>
+                                <td class="align-middle">{{ $role->description }}</td>
                             </tr>
                         @endforeach
                         <tr>
@@ -57,10 +58,13 @@
 
         </div>
         <div class="card-footer pagination-sm">
+
             @if (isset($filters))
-                {!! $permissions->appends($filters)->links() !!}
+                {!! $roles->appends($filters)->links() !!}
             @else
-                {!! $permissions->link() !!}
+                {!! $roles->links() !!}
+            @endif
+
         </div>
     </div>
 @stop

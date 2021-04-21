@@ -42,7 +42,9 @@
                                 <a href="{{ route('roles.show', $role->id) }}" class="btn btn-primary btn-sm">Ver</a>
                                 <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-info btn-sm">Editar</a>
                                 <a href="{{ route('roles.permissions', $role->id) }}"
-                                    class="btn btn-default btn-sm"><i class="fas fa-lock"></i></a>
+                                    class="btn btn-default btn-sm" title="Permissões"><i class="fas fa-lock"></i></a>
+                                    <a href="{{ route('roles.users', $role->id) }}"
+                                        class="btn btn-default btn-sm" title="Usuários"><i class="fas fa-users"></i></a>
                             </td>
                         </tr>
                     @endforeach
