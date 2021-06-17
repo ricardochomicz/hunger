@@ -74,9 +74,12 @@
 </head>
 
 <body class="@yield('classes_body')" @yield('body_data')>
+    @include('sweetalert::alert')
 
-    {{-- Body Content --}}
-    @yield('body')
+    <div id="app">
+        {{-- Body Content --}}
+        @yield('body')
+    </div>
 
     {{-- Base Scripts --}}
     @if(!config('adminlte.enabled_laravel_mix'))
@@ -103,6 +106,7 @@
 
     {{-- Custom Scripts --}}
     @yield('adminlte_js')
+    @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 
 </body>
 

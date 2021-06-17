@@ -10,6 +10,8 @@ use App\Observers\CategoryObserver;
 use App\Observers\CompanyObserver;
 use App\Observers\PlanObserver;
 use App\Observers\ProductObserver;
+use App\Repositories\CompanyRepository;
+use App\Repositories\Contracts\CompanyRepositoryInterface;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
@@ -22,7 +24,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(
+            CompanyRepositoryInterface::class,
+            CompanyRepository::class
+        );
     }
 
     /**

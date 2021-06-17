@@ -93,6 +93,7 @@ class TableController extends Controller
             return redirect()->back();
         }
         $table->update($request->all());
+        toast('Mesa atualizada com sucesso', 'success')->position('bottom-end');
         return redirect()->route('tables.index');
     }
 
