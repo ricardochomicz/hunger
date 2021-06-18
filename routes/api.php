@@ -1,6 +1,9 @@
 <?php
 
-use App\Http\Controllers\Api\CompanyApiController;
+use App\Http\Controllers\Api\{
+    CategoryApiController,
+    CompanyApiController
+};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +20,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/companies/{uuid}', [CompanyApiController::class, 'show']);
 Route::get('/companies', [CompanyApiController::class, 'index']);
+
+Route::get('/categories', [CategoryApiController::class, 'getCategoryByCompany']);

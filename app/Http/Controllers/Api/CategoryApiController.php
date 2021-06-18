@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\CompanyFormRequest;
+use App\Http\Requests\CompanyFormRequest;
 use App\Http\Resources\CategoryResource;
 use App\Services\CategoryService;
 use Illuminate\Http\Request;
@@ -23,17 +23,17 @@ class CategoryApiController extends Controller
         // {
         //     return response()->json(['message' => 'Token Not Found'], 404);
         // }
-        $categories = $this->categoryService->getCategoriesByUuid($request->token_company);
+        $categories = $this->categoryService->getCategoriesByCompanyUuid($request->token_company);
         return CategoryResource::collection($categories);
     }
 
-    public function show(CompanyFormRequest $request, $url)
-    {
-        if(!$category = $this->categoryService->getCategoryByUrl($url))
-        {
-            return response()->json(['Category Not Found'], 404);
-        }
+    // public function show(CompanyFormRequest $request, $url)
+    // {
+    //     if(!$category = $this->categoryService->getCategoryByUrl($url))
+    //     {
+    //         return response()->json(['Category Not Found'], 404);
+    //     }
 
-        return new CategoryResource($category);
-    }
+    //     return new CategoryResource($category);
+    // }
 }
