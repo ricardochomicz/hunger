@@ -36,6 +36,7 @@ class PlanController extends Controller
     public function store(StoreUpdatePlan $request)
     {
         $this->repository->create($request->all());
+        toast('Plano cadastrado com sucesso', 'success')->position('bottom-end');
         return redirect()->route('plans.index');
     }
 
@@ -66,7 +67,7 @@ class PlanController extends Controller
         }
 
         $plan->delete();
-
+        toast('Plano deletado com sucesso', 'info')->position('bottom-end');
         return redirect()->route('plans.index');
     }
 
@@ -101,7 +102,7 @@ class PlanController extends Controller
             return redirect()->back();
 
         $plan->update($request->all());
-
+        toast('Plano atualizado com sucesso', 'info')->position('bottom-end');
         return redirect()->route('plans.index');
     }
 }

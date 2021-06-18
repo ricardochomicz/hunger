@@ -47,6 +47,7 @@ class RoleController extends Controller
     public function store(StoreUpdateRoles $request)
     {
         $this->repository->create($request->all());
+        toast('Cargo cadastrado com sucesso', 'success')->position('bottom-end');
         return redirect()->route('roles.index');
     }
 
@@ -95,6 +96,7 @@ class RoleController extends Controller
             return redirect()->back();
         }
         $role->update($request->all());
+        toast('Cargo atualizado com sucesso', 'info')->position('bottom-end');
         return redirect()->route('roles.index');
     }
 
@@ -112,6 +114,7 @@ class RoleController extends Controller
         }
 
         $role->delete();
+        toast('Cargo deletado com sucesso', 'info')->position('bottom-end');
         return redirect()->route('roles.index');
     }
 

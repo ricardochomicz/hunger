@@ -65,7 +65,7 @@ class PermissionProfileController extends Controller
         }
 
         $profile->permissions()->attach($request->permissions);
-
+        toast('Permissão vinculada com sucesso', 'success')->position('bottom-end');
         return redirect()->route('profiles.permissions', $profile->id);
     }
 
@@ -78,7 +78,7 @@ class PermissionProfileController extends Controller
         }
 
         $profile->permissions()->detach($permission);
-
+        toast('Permissão desvinculada com sucesso', 'info')->position('bottom-end');
         return redirect()->route('profiles.permissions', $profile->id);
     }
 }

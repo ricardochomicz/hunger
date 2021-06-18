@@ -65,7 +65,7 @@ class PlanProfileController extends Controller
         }
 
         $plan->profiles()->attach($request->profiles);
-
+        toast('Plano vinculado com sucesso', 'success')->position('bottom-end');
         return redirect()->route('plans.profiles', $plan->id);
     }
 
@@ -78,7 +78,7 @@ class PlanProfileController extends Controller
         }
 
         $plan->profiles()->detach($profile);
-
+        toast('Plano desvinculado com sucesso', 'success')->position('bottom-end');
         return redirect()->route('plans.profiles', $plan->id);
     }
 }

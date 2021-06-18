@@ -20,33 +20,36 @@
                     value="{{ $filters['identify'] ?? '' }}">
                 <button class="btn btn-sm btn-dark" type="submit"><i class="fas fa-search mr-1"></i> Filtrar</button>
             </form>
-            <a href="{{ route('tables.create') }}" class="btn btn-sm btn-dark float-right"><i class="fas fa-plus mr-1"></i>
+            <a href="{{ route('tables.create') }}" class="btn btn-sm btn-dark float-right"><i
+                    class="fas fa-plus mr-1"></i>
                 Novo</a>
         </div>
-        <div class="card-body table-responsive p-0">
+        <div class="card-body">
+            <div class="row">
+                @foreach ($tables as $table)
+                    <div class="col-sm-3">
 
-                <table class="table table-condensed dataTable dataTable table-borderless dtr-inline">
-                    <thead>
-                        <tr class="table-active">
-                            <th scope="col">Identificação</th>
-                            <th scope="col">Descrição</th>
-                            <th scope="colgroup" class="text-center">Ação</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($tables as $table)
-                            <tr>
-                                <td class="align-middle">{{ $table->identify }}</td>
-                                <td class="align-middle">{{ $table->description }}</td>
-                                <td class="align-middle text-center">
-                                    <a href="{{ route('tables.show', $table->id) }}" class="btn btn-primary btn-sm">Ver</a>
-                                    <a href="{{ route('tables.edit', $table->id) }}" class="btn btn-info btn-sm">Editar</a>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            
+                        <div class="card shadow border border-secondary bg-dark">
+                            <div class="card-header bg-gray-dark"><span
+                                    class="font-weight-bold">{{ $table->identify }}</span></div>
+                            <div class="card-body">
+                                <small>{{ $table->description }}</small>
+                            </div>
+                            <div class="modal-footer d-flex justify-content-between">
+                                <a href="{{ route('tables.edit', $table->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Editar" data-container=".content"><i class="fas fa-pen"></i></a>
+                              
+                                <form action="{{route('tables.destroy', $table->id)}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger" data-toggle="tooltip" title="Deletar" data-container=".content"><i class="fas fa-trash-alt"></i></button>
+                                </form>
+
+                            </div>
+                        </div>
+
+                    </div>
+                @endforeach
+            </div>
         </div>
         <div class="pagination-sm">
 

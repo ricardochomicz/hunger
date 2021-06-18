@@ -38,7 +38,7 @@ class UserController extends Controller
         $data['company_id'] = auth()->user()->company_id;
         $data['password'] = bcrypt($data['password']);
         $this->repository->create($data);
-
+        toast('Usuário cadastrado com sucesso', 'success')->position('bottom-end');
         return redirect()->route('users.index');
     }
 
@@ -72,6 +72,7 @@ class UserController extends Controller
             $data['password'] = bcrypt($request->password);
         }
         $user->update($data);
+        toast('Usuário atualizado com sucesso', 'info')->position('bottom-end');
         return redirect()->route('users.index');
     }
 
@@ -82,6 +83,7 @@ class UserController extends Controller
             return redirect()->back();
         }
         $user->delete();
+        toast('Usuário deletado com sucesso', 'success')->position('bottom-end');
         return redirect()->route('users.index');
     }
 

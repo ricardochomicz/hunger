@@ -59,7 +59,7 @@ class ProductController extends Controller
             $data['image'] = $request->image->store("companies/{$company->uuid}/products");
         }
         $this->repository->create($data);
-
+        toast('Produto cadastrado com sucesso', 'success')->position('bottom-end');
         return redirect()->route('products.index');
     }
 
@@ -118,7 +118,7 @@ class ProductController extends Controller
             $data['image'] = $request->image->store("companies/{$company->uuid}/products");
         }
         $product->update($data);
-
+        toast('Produto atualizado com sucesso', 'info')->position('bottom-end');
         return redirect()->route('products.index');
     }
 
@@ -140,7 +140,7 @@ class ProductController extends Controller
         }
 
         $product->delete();
-
+        toast('Produto deletado com sucesso', 'info')->position('bottom-end');
         return redirect()->route('products.index');
     }
 

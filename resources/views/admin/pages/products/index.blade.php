@@ -47,9 +47,11 @@
                                     <img src="{{ url("storage/{$product->image}") }}" alt="{{ $product->name }}" style="max-width:50px">
                                 </td>
                                 <td class="align-middle text-center">
-                                    <a href="{{ route('products.show', $product->id) }}" class="btn btn-primary btn-sm">Ver</a>
-                                    <a href="{{ route('products.edit', $product->id) }}" class="btn btn-info btn-sm">Editar</a>
-                                    <a href="{{ route('products.categories', $product->id) }}" class="btn btn-info btn-sm" title="Categorias"><i class="fas fa-layer-group"></i></a>
+                                    <a href="{{ route('products.show', $product->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Ver" data-container=".content"><i
+                                        class="fas fa-eye"></i></a>
+                                    <a href="{{ route('products.edit', $product->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" title="Editar" data-container=".content"><i
+                                        class="fas fa-pen"></i></a>
+                                    <a href="{{ route('products.categories', $product->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" title="Categorias" data-container=".content"><i class="fas fa-layer-group"></i></a>
                                 </td>
                             </tr>
                         @endforeach

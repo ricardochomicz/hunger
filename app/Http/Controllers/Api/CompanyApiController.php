@@ -15,9 +15,19 @@ class CompanyApiController extends Controller
         $this->companyService = $companyService;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $companies = $this->companyService->getAllCompanies();
+        $per_page = (int) $request->get('per_page', 15);
+        $companies = $this->companyService->getAllCompanies($per_page);
         return CompanyResource::collection($companies);
+    }
+
+    public function show($uuid)
+    {
+        if(!$company = $this->companyService->getCompanyByUuid($uuid)){
+            return response()->json(['message' => 'Not Found'], 404);
+        }
+
+        return new CompanyResource($company);
     }
 }

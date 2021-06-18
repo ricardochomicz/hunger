@@ -81,7 +81,7 @@ class CompanyController extends Controller
             $data['logo'] = $request->logo->store("companies/{$company->uuid}");
         }
         $company->update($data);
-
+        toast('Empresa atualizada com sucesso', 'info')->position('bottom-end');
         return redirect()->route('companies.index');
     }
 

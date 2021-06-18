@@ -23,34 +23,45 @@
             <a href="{{ route('plans.create') }}" class="btn btn-sm btn-dark float-right"><i class="fas fa-plus mr-1"></i>
                 Novo</a>
         </div>
-        <div class="card-body table-responsive p-0">
+        <div class="card-body">
 
-                <table class="table table-condensed dataTable dataTable table-borderless dtr-inline">
-                    <thead>
-                        <tr class="table-active">
-                            <th scope="col">Nome</th>
-                            <th scope="col">Valor</th>
-                            <th scope="col">Descrição</th>
-                            <th scope="colgroup" class="text-center">Ação</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($plans as $plan)
-                            <tr>
-                                <td class="align-middle">{{ $plan->name }}</td>
-                                <td class="align-middle">R$ {{ number_format($plan->price, 2, ',', '.') }}</td>
-                                <td class="align-middle">{{ $plan->description }}</td>
-                                <td class="align-middle text-center">
-                                    <a href="{{ route('details.plan.index', $plan->id) }}"
-                                        class="btn btn-secondary btn-sm">Detalhes</a>
-                                    <a href="{{ route('plans.show', $plan->id) }}" class="btn btn-primary btn-sm">Ver</a>
-                                    <a href="{{ route('plans.edit', $plan->id) }}" class="btn btn-info btn-sm">Editar</a>
-                                    <a href="{{ route('plans.profiles', $plan->id) }}" class="btn btn-default btn-sm"><i class="fas fa-lock"></i></a>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+            <div class="row">
+                @foreach ($plans as $plan)
+                    <div class="col-sm-3">
+
+                        <div class="card shadow border border-secondary bg-dark">
+                            <div class="card-header bg-gray-dark"><span class="font-weight-bold">{{ $plan->name }}</span>
+                            </div>
+                            <div class="card-body">
+                                <small>{{ $plan->description }}</small>
+                                <p class="h3">R$ {{ number_format($plan->price, 2, ',', '.') }} </p>
+                            </div>
+                            <div class="modal-footer d-flex justify-content-between">
+                                <a href="{{ route('plans.edit', $plan->id) }}" class="btn btn-primary btn-sm"
+                                    data-toggle="tooltip" title="Editar" data-container=".content"><i
+                                        class="fas fa-pen"></i></a>
+                                <a href="{{ route('details.plan.index', $plan->id) }}" class="btn btn-default btn-sm"
+                                    title="Detalhes" data-toggle="tooltip" title="Permissões" data-container=".content"><i
+                                        class="fas fa-file-alt"></i></a>
+                                <a href="{{ route('plans.profiles', $plan->id) }}" class="btn btn-warning btn-sm"
+                                    data-toggle="tooltip" title="Perfis" data-container=".content"><i
+                                        class="fas fa-id-badge"></i></a>
+
+                                <form action="{{ route('plans.destroy', $plan->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger" data-toggle="tooltip"
+                                        title="Deletar" data-container=".content"><i class="fas fa-trash-alt"></i></button>
+                                </form>
+
+                            </div>
+                        </div>
+
+                    </div>
+                @endforeach
+            </div>
+
+                
             
         </div>
         <div class="pagination-sm">

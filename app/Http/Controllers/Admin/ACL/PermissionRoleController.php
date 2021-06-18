@@ -64,7 +64,7 @@ class PermissionRoleController extends Controller
         }
 
         $role->permissions()->attach($request->permissions);
-
+        toast('Permissão vinculada com sucesso', 'success')->position('bottom-end');
         return redirect()->route('roles.permissions', $role->id);
     }
 
@@ -77,7 +77,7 @@ class PermissionRoleController extends Controller
         }
 
         $role->permissions()->detach($permission);
-
+        toast('Permissão desvinculada com sucesso', 'info')->position('bottom-end');
         return redirect()->route('roles.permissions', $role->id);
     }
 }

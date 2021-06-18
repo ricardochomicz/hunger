@@ -24,7 +24,7 @@
             <a href="{{ route('categories.create') }}" class="btn btn-sm btn-dark float-right"><i class="fas fa-plus mr-1"></i>
                 Novo</a>
         </div>
-        <div class="card-body table-responsive p-0">
+        <div class="card-body table-responsive">
 
                 <table class="table table-condensed dataTable dataTable table-borderless dtr-inline">
                     <thead>
@@ -42,8 +42,10 @@
                                 <td class="align-middle">{{ $category->url }}</td>
                                 <td class="align-middle">{{ $category->description }}</td>
                                 <td class="align-middle text-center">
-                                    <a href="{{ route('categories.show', $category->id) }}" class="btn btn-primary btn-sm">Ver</a>
-                                    <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-info btn-sm">Editar</a>
+                                    <a href="{{ route('categories.show', $category->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Ver" data-container=".content"><i
+                                        class="fas fa-eye"></i></a>
+                                    <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" title="Editar" data-container=".content"><i
+                                        class="fas fa-pen"></i></a>
                                 </td>
                             </tr>
                         @endforeach

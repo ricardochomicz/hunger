@@ -54,7 +54,7 @@ class DetailPlanController extends Controller
         //$data = $request->all();
         //$data['plan_id'] = $plan->id;
         $plan->details()->create($request->all());
-        
+        toast('Detalhe cadastrado com sucesso', 'success')->position('bottom-end');    
         return redirect()->route('details.plan.index', $plan->id);
     }
 
@@ -83,7 +83,7 @@ class DetailPlanController extends Controller
         //$data = $request->all();
         //$data['plan_id'] = $plan->id;
         $detail->update($request->all());
-        
+        toast('Detalhe atualizado com sucesso', 'info')->position('bottom-end');
         return redirect()->route('details.plan.index', $plan->id);
     }
 
@@ -113,6 +113,7 @@ class DetailPlanController extends Controller
         //$data['plan_id'] = $plan->id;
         $detail->delete();
         
+        toast('Detalhe deletado com sucesso', 'info')->position('bottom-end');
         return redirect()
         ->route('details.plan.index', $plan->id)
         ->with('message', 'Registro deletado com sucesso!');

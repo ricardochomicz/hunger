@@ -65,7 +65,7 @@ class CategoryProductController extends Controller
         }
 
         $product->categories()->attach($request->categories);
-
+        toast('Categoria vinculada com sucesso', 'success')->position('bottom-end');
         return redirect()->route('products.categories', $product->id);
     }
 
@@ -78,7 +78,7 @@ class CategoryProductController extends Controller
         }
 
         $product->categories()->detach($category);
-
+        toast('Categoria desvinculada com sucesso', 'info')->position('bottom-end');
         return redirect()->route('products.categories', $product->id);
     }
 }

@@ -23,7 +23,7 @@
             <a href="{{ route('users.create') }}" class="btn btn-sm btn-dark float-right"><i class="fas fa-plus mr-1"></i>
                 Novo</a>
         </div>
-        <div class="card-body table-responsive p-0">
+        <div class="card-body table-responsive">
 
                 <table class="table table-condensed dataTable dataTable table-borderless dtr-inline">
                     <thead>
@@ -39,10 +39,12 @@
                                 <td class="align-middle">{{ $user->name }}</td>
                                 <td class="align-middle">{{ $user->email }}</td>
                                 <td class="align-middle text-center">
-                                    <a href="{{ route('users.show', $user->id) }}" class="btn btn-primary btn-sm">Ver</a>
-                                    <a href="{{ route('users.edit', $user->id) }}" class="btn btn-info btn-sm">Editar</a>
+                                    <a href="{{ route('users.show', $user->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Ver" data-container=".content"><i
+                                        class="fas fa-eye"></i></a>
+                                    <a href="{{ route('users.edit', $user->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" title="Editar" data-container=".content"><i
+                                        class="fas fa-pen"></i></a>
                                     <a href="{{ route('users.roles', $user->id) }}"
-                                        class="btn btn-default btn-sm"><i class="fas fa-lock"></i></a>
+                                        class="btn btn-default btn-sm" data-toggle="tooltip" title="Cargos" data-container=".content"><i class="fas fa-lock"></i></a>
                                 </td>
                             </tr>
                         @endforeach

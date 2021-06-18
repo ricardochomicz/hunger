@@ -32,6 +32,7 @@ class PermissionController extends Controller
     public function store(StoreUpdatePermission $request)
     {
         $this->repository->create($request->all());
+        toast('Permissão cadastrada com sucesso', 'success')->position('bottom-end');
         return redirect()->route('permissions.index');
     }
 
@@ -60,6 +61,7 @@ class PermissionController extends Controller
             return redirect()->back();
         }
         $permission->update($request->all());
+        toast('Permissão atualizada com sucesso', 'info')->position('bottom-end');
         return redirect()->route('permissions.index');
     }
 
@@ -70,6 +72,7 @@ class PermissionController extends Controller
             return redirect()->back();
         }
         $permission->delete();
+        toast('Permissão deletada com sucesso', 'info')->position('bottom-end');
         return redirect()->route('permissions.index');
     }
 

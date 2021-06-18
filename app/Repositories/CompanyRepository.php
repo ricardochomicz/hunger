@@ -13,8 +13,13 @@ class CompanyRepository implements CompanyRepositoryInterface
     {
         $this->entity = $company;
     }
-    public function getAllCompanies()
+    public function getAllCompanies($per_page)
     {
-        return $this->entity->all();
+        return $this->entity->paginate($per_page);
+    }
+
+    public function getCompanyByUuid(string $uuid)
+    {
+        return $this->entity->where('uuid', $uuid)->first();
     }
 }

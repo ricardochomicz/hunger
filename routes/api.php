@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CompanyApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/companies/{uuid}', [CompanyApiController::class, 'show']);
+Route::get('/companies', [CompanyApiController::class, 'index']);

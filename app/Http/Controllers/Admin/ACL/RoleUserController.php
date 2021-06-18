@@ -70,7 +70,7 @@ class RoleUserController extends Controller
         }
 
         $user->roles()->attach($request->roles);
-
+        toast('Cargo vinculado com sucesso', 'success')->position('bottom-end');
         return redirect()->route('users.roles', $user->id);
     }
 
@@ -83,7 +83,7 @@ class RoleUserController extends Controller
         }
 
         $role->users()->detach($user);
-
+        toast('Cargo desvinculado com sucesso', 'info')->position('bottom-end');
         return redirect()->route('roles.users', $role->id);
     }
 }

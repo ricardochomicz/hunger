@@ -19,7 +19,7 @@ class ProfileController extends Controller
 
     public function index()
     {
-        $profiles = $this->repository->paginate();
+        $profiles = $this->repository->orderBy('name', 'asc')->paginate();
 
         return view('admin.pages.profiles.index', compact('profiles'));
     }
@@ -34,7 +34,7 @@ class ProfileController extends Controller
     public function store(StoreUpdateProfile $request)
     {
         $this->repository->create($request->all());
-
+        toast('Perfil cadastrado com sucesso', 'success')->position('bottom-end');
         return redirect()->route('profiles.index');
     }
 
@@ -63,6 +63,7 @@ class ProfileController extends Controller
             return redirect()->back();
         }
         $profile->update($request->all());
+        toast('Perfil atualizado com sucesso', 'info')->position('bottom-end');
         return redirect()->route('profiles.index');
     }
 
@@ -73,6 +74,7 @@ class ProfileController extends Controller
             return redirect()->back();
         }
         $profile->delete();
+        toast('Perfil deletado com sucesso', 'info')->position('bottom-end');
         return redirect()->route('profiles.index');
     }
 

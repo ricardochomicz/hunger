@@ -49,6 +49,7 @@ class TableController extends Controller
         $data = $request->all();
         $data['company_id'] = auth()->user()->company_id;
         $this->repository->create($data);
+        toast('Mesa cadastrada com sucesso', 'success')->position('bottom-end');
         return redirect()->route('tables.index');
     }
 
@@ -109,6 +110,7 @@ class TableController extends Controller
             return redirect()->back();
         }
         $table->delete();
+        toast('Mesa deletada com sucesso', 'warning')->position('bottom-end');
         return redirect()->route('tables.index');
     }
 

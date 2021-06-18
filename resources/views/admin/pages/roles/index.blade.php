@@ -21,35 +21,45 @@
                     value="{{ $filters['name'] ?? '' }}">
                 <button class="btn btn-sm btn-dark" type="submit"><i class="fas fa-search mr-1"></i> Filtrar</button>
             </form>
-            <a href="{{ route('roles.create') }}" class="btn btn-sm btn-dark float-right"><i
-                    class="fas fa-plus mr-1"></i> Novo</a>
+            <a href="{{ route('roles.create') }}" class="btn btn-sm btn-dark float-right"><i class="fas fa-plus mr-1"></i>
+                Novo</a>
         </div>
-        <div class="card-body table-responsive p-0">
-            <table class="table table-condensed table-borderless">
-                <thead>
-                    <tr class="table-active">
-                        <th scope="col">Nome</th>
-                        <th scope="col">Descrição</th>
-                        <th scope="colgroup" class="text-center">Ação</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($roles as $role)
-                        <tr>
-                            <td class="align-middle">{{ $role->name }}</td>
-                            <td class="align-middle">{{ $role->description }}</td>
-                            <td class="align-middle text-center">
-                                <a href="{{ route('roles.show', $role->id) }}" class="btn btn-primary btn-sm">Ver</a>
-                                <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-info btn-sm">Editar</a>
-                                <a href="{{ route('roles.permissions', $role->id) }}"
-                                    class="btn btn-default btn-sm" title="Permissões"><i class="fas fa-lock"></i></a>
-                                    <a href="{{ route('roles.users', $role->id) }}"
-                                        class="btn btn-default btn-sm" title="Usuários"><i class="fas fa-users"></i></a>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+        <div class="card-body">
+
+            <div class="row">
+                @foreach ($roles as $role)
+                    <div class="col-sm-3">
+
+                        <div class="card shadow border border-secondary bg-dark">
+                            <div class="card-header bg-gray-dark"><span class="font-weight-bold">{{ $role->name }}</span>
+                            </div>
+                            <div class="card-body">
+                                <small>{{ $role->description }}</small>
+                            </div>
+                            <div class="modal-footer d-flex justify-content-between">
+                                <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-primary btn-sm"
+                                    data-toggle="tooltip" title="Editar" data-container=".content"><i
+                                        class="fas fa-pen"></i></a>
+                                <a href="{{ route('roles.permissions', $role->id) }}" class="btn btn-default btn-sm"
+                                    title="Permissões" data-toggle="tooltip" title="Permissões" data-container=".content"><i
+                                        class="fas fa-lock"></i></a>
+                                <a href="{{ route('roles.users', $role->id) }}" class="btn btn-default btn-sm"
+                                    data-toggle="tooltip" title="Usuários" data-container=".content"><i
+                                        class="fas fa-users"></i></a>
+
+                                <form action="{{ route('roles.destroy', $role->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger" data-toggle="tooltip"
+                                        title="Deletar" data-container=".content"><i class="fas fa-trash-alt"></i></button>
+                                </form>
+
+                            </div>
+                        </div>
+
+                    </div>
+                @endforeach
+            </div>
 
         </div>
         <div class="card-footer pagination-sm">

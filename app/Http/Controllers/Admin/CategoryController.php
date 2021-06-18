@@ -50,7 +50,7 @@ class CategoryController extends Controller
     public function store(StoreUpdateCategory $request)
     {
         $this->repository->create($request->all());
-
+        toast('Categoria cadastrada com sucesso', 'success')->position('bottom-end');
         return redirect()->route('categories.index');
     }
 
@@ -99,6 +99,7 @@ class CategoryController extends Controller
         }
 
         $category->update($request->all());
+        toast('Categoria atualizada com sucesso', 'info')->position('bottom-end');
         return redirect()->route('categories.index');
     }
 
@@ -115,6 +116,7 @@ class CategoryController extends Controller
         }
 
         $category->delete();
+        toast('Categoria deletada com sucesso', 'info')->position('bottom-end');
         return redirect()->route('categories.index');
     }
 

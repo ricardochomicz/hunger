@@ -1,4 +1,3 @@
-@include('admin.includes.alerts')
 
 <div class="form-group">
     <label for="name">Identificação:</label>

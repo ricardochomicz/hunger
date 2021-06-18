@@ -19,35 +19,45 @@
                 @csrf
                 <input type="search" name="filter" class="form-control form-control-sm" placeholder="Pesquisa"
                     value="{{ $filters['name'] ?? '' }}">
-                <button class="btn btn-sm btn-dark" type="submit"><i class="fas fa-search mr-1"></i> Filtrar</button>
+                <button class="btn btn-sm btn-default" type="submit"><i class="fas fa-search mr-1"></i> Filtrar</button>
             </form>
-            <a href="{{ route('profiles.create') }}" class="btn btn-sm btn-dark float-right"><i
+            <a href="{{ route('profiles.create') }}" class="btn btn-sm btn-default float-right"><i
                     class="fas fa-plus mr-1"></i> Novo</a>
         </div>
-        <div class="card-body table-responsive p-0">
-            <table class="table table-condensed table-borderless">
-                <thead>
-                    <tr class="table-active">
-                        <th scope="col">Nome</th>
-                        <th scope="col">Descrição</th>
-                        <th scope="colgroup" class="text-center">Ação</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($profiles as $profile)
-                        <tr>
-                            <td class="align-middle">{{ $profile->name }}</td>
-                            <td class="align-middle">{{ $profile->description }}</td>
-                            <td class="align-middle text-center">
-                                <a href="{{ route('profiles.show', $profile->id) }}" class="btn btn-primary btn-sm">Ver</a>
-                                <a href="{{ route('profiles.edit', $profile->id) }}" class="btn btn-info btn-sm">Editar</a>
-                                <a href="{{ route('profiles.permissions', $profile->id) }}"
-                                    class="btn btn-default btn-sm">Perfis</a>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+        <div class="card-body">
+
+            <div class="row">
+                @foreach ($profiles as $profile)
+                    <div class="col-sm-3">
+
+                        <div class="card shadow border border-secondary">
+                            <div class="card-header bg-gray-dark"><span class="font-weight-bold">{{ $profile->name }}</span>
+                            </div>
+                            <div class="card-body">
+                                <small>{{ $profile->description }}</small>
+                            </div>
+                            <div class="modal-footer d-flex justify-content-between">
+                                <a href="{{ route('profiles.edit', $profile->id) }}" class="btn btn-secondary btn-sm"
+                                    data-toggle="tooltip" title="Editar" data-container=".content"><i
+                                        class="fas fa-pen"></i></a>
+                               
+                                <a href="{{ route('profiles.permissions', $profile->id) }}" class="btn btn-secondary btn-sm"
+                                    data-toggle="tooltip" title="Perfis" data-container=".content"><i
+                                        class="fas fa-id-badge"></i></a>
+
+                                <form action="{{ route('profiles.destroy', $profile->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-secondary" data-toggle="tooltip"
+                                        title="Deletar" data-container=".content"><i class="fas fa-trash-alt"></i></button>
+                                </form>
+
+                            </div>
+                        </div>
+
+                    </div>
+                @endforeach
+            </div>
 
         </div>
         <div class="card-footer pagination-sm">
