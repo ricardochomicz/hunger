@@ -28,4 +28,9 @@ class ProductRepository implements ProductRepositoryInterface
             })
             ->get();
     }
+
+    public function getProductByUrl(string $url)
+    {
+        return DB::table($this->table)->where('url', $url)->first();
+    }
 }

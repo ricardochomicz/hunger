@@ -23,4 +23,9 @@ class ProductService
 
         return $this->productRepository->getProductsByCompanyId($company->id, $categories);
     }
+
+    public function getProductByUrl(string $url)
+    {
+        return $this->productRepository->getProductByUrl($url);
+    }
 }

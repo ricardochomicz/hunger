@@ -18,8 +18,7 @@ class ProductApiController extends Controller
 
     public function getProductsByCompany(CompanyFormRequest $request)
     {
-        if(!$request->token_company)
-        {
+        if (!$request->token_company) {
             return response()->json(['message' => 'Token Not Found'], 404);
         }
         $products = $this->productService->getProductsByCompanyUuid(
@@ -27,5 +26,13 @@ class ProductApiController extends Controller
             $request->get('categories', [])
         );
         return ProductResource::collection($products);
+    }
+
+    public function show(CompanyFormRequest $request, $url)
+    {
+        if (!$product = $this->productService->getProductByUrl($url)) {
+            return response()->json(['message' => 'Product Not Found'], 404);
+        }
+        return new ProductResource($product);
     }
 }
