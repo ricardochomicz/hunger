@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\{
     ProductApiController,
     TableApiController
 };
+use App\Http\Controllers\Api\Auth\AuthClientController;
 use App\Http\Controllers\Api\Auth\RegisterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +21,8 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::post('/sanctum/token', [AuthClientController::class, 'auth']);
 
 Route::group([
     'prefix' => 'v1'
@@ -38,4 +41,6 @@ Route::group([
 
     Route::get('/client/{id}', [RegisterController::class, 'show']);
     Route::post('/client', [RegisterController::class, 'store']);
+
+
 });
