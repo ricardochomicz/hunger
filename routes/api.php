@@ -27,7 +27,8 @@ Route::post('/sanctum/token', [AuthClientController::class, 'auth']);
 Route::group([
     'middleware' => ['auth:sanctum']
 ], function(){
-    Route::get('/me', [AuthClientController::class, 'me']);
+    Route::get('/auth/me', [AuthClientController::class, 'me']);
+    Route::post('/auth/logout', [AuthClientController::class, 'logout']);
 });
 
 
