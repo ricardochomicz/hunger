@@ -18,7 +18,7 @@ class UsersTableSeeder extends Seeder
         $company = Company::first();
         $company->users()->create([
             'name' => 'Ricardo Chomicz',
-            'email' => 'admin@email.com',
+            'email' => 'ricardo.chomicz@gmail.com',
             'password' => bcrypt('password')
         ]);
     }

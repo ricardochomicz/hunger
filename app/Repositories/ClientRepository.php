@@ -19,8 +19,8 @@ class ClientRepository implements ClientRepositoryInterface
         return $this->entity->create($data);
     }
 
-    public function getClientById(int $id)
+    public function getClientByUuid(int $uuid)
     {
-        return $this->entity->find($id)->first();
+        return $this->entity->find($uuid)->first();
     }
 }

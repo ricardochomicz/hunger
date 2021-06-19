@@ -20,6 +20,7 @@ class Client extends Authenticatable
         'name',
         'email',
         'password',
+        'uuid'
     ];
 
     /**

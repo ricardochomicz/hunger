@@ -66,7 +66,7 @@ class CategoryProductController extends Controller
 
         $product->categories()->attach($request->categories);
         toast('Categoria vinculada com sucesso', 'success')->position('bottom-end');
-        return redirect()->route('products.categories', $product->id);
+        return redirect()->route('products.index');
     }
 
     public function detachCategoryProduct($idProduct, $idCategory)

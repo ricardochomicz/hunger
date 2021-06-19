@@ -17,6 +17,7 @@ class TableResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'uuid' => $this->uuid,
             'identify' => $this->identify,
             'description' => $this->description,
             'created_at' => Carbon::parse($this->created_at)->format("d/m/Y"),

@@ -24,9 +24,9 @@ class RegisterController extends Controller
         return new ClientResource($client);
     }
 
-    public function show($id)
+    public function show($uuid)
     {
-        $client = $this->clientService->getClientById($id);
+        $client = $this->clientService->getClientByUuid($uuid);
 
         return new ClientResource($client);
     }

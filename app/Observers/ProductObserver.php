@@ -10,6 +10,7 @@ class ProductObserver
     public function creating(Product $product)
     {
         $product->url = Str::kebab($product->name);
+        $product->uuid = Str::uuid();
     }
 
     

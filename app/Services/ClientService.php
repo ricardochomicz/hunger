@@ -17,8 +17,8 @@ class ClientService
         return $this->clientRepository->createNewClient($data);
     }
 
-    public function getClientById(int $id)
+    public function getClientByUuid(int $uuid)
     {
-        return $this->clientRepository->getClientById($id);
+        return $this->clientRepository->getClientByUuid($uuid);
     }
 }
