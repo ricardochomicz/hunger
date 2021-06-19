@@ -25,6 +25,13 @@ use Illuminate\Support\Facades\Route;
 Route::post('/sanctum/token', [AuthClientController::class, 'auth']);
 
 Route::group([
+    'middleware' => ['auth:sanctum']
+], function(){
+    Route::get('/me', [AuthClientController::class, 'me']);
+});
+
+
+Route::group([
     'prefix' => 'v1'
 ], function () {
     Route::get('/companies/{uuid}', [CompanyApiController::class, 'show']);
@@ -41,6 +48,8 @@ Route::group([
 
     Route::get('/client/{id}', [RegisterController::class, 'show']);
     Route::post('/client', [RegisterController::class, 'store']);
+
+    
 
 
 });
