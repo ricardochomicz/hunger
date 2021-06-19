@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\{
     CategoryApiController,
     CompanyApiController,
+    ProductApiController,
     TableApiController
 };
 use Illuminate\Http\Request;
@@ -27,3 +28,6 @@ Route::get('/categories', [CategoryApiController::class, 'getCategoryByCompany']
 
 Route::get('/tables/{identify}', [TableApiController::class, 'show']);
 Route::get('/tables', [TableApiController::class, 'getTablesByCompany']);
+
+Route::get('/products/{url}', [ProductApiController::class, 'show']);
+Route::get('/products', [ProductApiController::class, 'getProductsByCompany']);
