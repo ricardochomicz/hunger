@@ -26,7 +26,7 @@ Route::post('/sanctum/token', [AuthClientController::class, 'auth']);
 
 Route::group([
     'middleware' => ['auth:sanctum']
-], function(){
+], function () {
     Route::get('/auth/me', [AuthClientController::class, 'me']);
     Route::post('/auth/logout', [AuthClientController::class, 'logout']);
 });
@@ -35,22 +35,18 @@ Route::group([
 Route::group([
     'prefix' => 'v1'
 ], function () {
-    Route::get('/companies/{uuid}', [CompanyApiController::class, 'show']);
+    Route::get('/company/{uuid}', [CompanyApiController::class, 'show']);
     Route::get('/companies', [CompanyApiController::class, 'index']);
 
-    Route::get('/categories/{uuid}', [CategoryApiController::class, 'show']);
+    Route::get('/category/{uuid}', [CategoryApiController::class, 'show']);
     Route::get('/categories', [CategoryApiController::class, 'getCategoryByCompany']);
 
-    Route::get('/tables/{identify}', [TableApiController::class, 'show']);
+    Route::get('/table/{uuid}', [TableApiController::class, 'show']);
     Route::get('/tables', [TableApiController::class, 'getTablesByCompany']);
 
-    Route::get('/products/{uuid}', [ProductApiController::class, 'show']);
+    Route::get('/product/{uuid}', [ProductApiController::class, 'show']);
     Route::get('/products', [ProductApiController::class, 'getProductsByCompany']);
 
     Route::get('/client/{uuid}', [RegisterController::class, 'show']);
     Route::post('/client', [RegisterController::class, 'store']);
-
-    
-
-
 });

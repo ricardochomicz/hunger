@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Scope;
 
 class CompanyScope implements Scope
 {
-/**
+    /**
      * Apply the scope to a given Eloquent query builder.
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $builder
@@ -18,6 +18,8 @@ class CompanyScope implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
-        $builder->where('company_id', app(ManagerCompany::class)->getCompanyIdentify());
+        $identify = app(ManagerCompany::class)->getCompanyIdentify();
+        if ($identify)
+            $builder->where('company_id', $identify);
     }
 }

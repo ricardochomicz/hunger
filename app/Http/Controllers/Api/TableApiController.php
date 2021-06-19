@@ -27,9 +27,9 @@ class TableApiController extends Controller
         return TableResource::collection($tables);
     }
 
-    public function show(CompanyFormRequest $request, $identify)
+    public function show(CompanyFormRequest $request, $uuid)
     {
-        if(!$table = $this->tableService->getTableByIdentify($identify))
+        if(!$table = $this->tableService->getTableByUuid($uuid))
         {
             return response()->json(['Table Not Found'], 404);
         }

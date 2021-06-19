@@ -6,5 +6,5 @@ interface TableRepositoryInterface
 {
     public function getTablesByCompanyUuid(string $uuid);
     public function getTablesByCompanyId(int $idCompany);
-    public function getTableByIdentify(string $identify);
+    public function getTableByUuid(string $uuid);
 }
