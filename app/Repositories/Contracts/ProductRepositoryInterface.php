@@ -4,5 +4,5 @@ namespace App\Repositories\Contracts;
 
 interface ProductRepositoryInterface
 {
-    public function getProductsByCompanyId(string $idCompany);
+    public function getProductsByCompanyId(string $idCompany, array $categories);
 }

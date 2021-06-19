@@ -17,10 +17,10 @@ class ProductService
         $this->productRepository = $productRepository;
     }
 
-    public function getProductsByCompanyUuid(string $uuid)
+    public function getProductsByCompanyUuid(string $uuid, array $categories)
     {
         $company = $this->companyRepository->getCompanyByUuid($uuid);
 
-        return $this->productRepository->getProductsByCompanyId($company->id);
+        return $this->productRepository->getProductsByCompanyId($company->id, $categories);
     }
 }

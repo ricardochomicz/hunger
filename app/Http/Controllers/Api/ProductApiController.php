@@ -22,7 +22,10 @@ class ProductApiController extends Controller
         {
             return response()->json(['message' => 'Token Not Found'], 404);
         }
-        $products = $this->productService->getProductsByCompanyUuid($request->token_company);
+        $products = $this->productService->getProductsByCompanyUuid(
+            $request->token_company,
+            $request->get('categories', [])
+        );
         return ProductResource::collection($products);
     }
 }
