@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\{
     ProductApiController,
     TableApiController
 };
+use App\Http\Controllers\Api\Auth\RegisterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,14 +21,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/companies/{uuid}', [CompanyApiController::class, 'show']);
-Route::get('/companies', [CompanyApiController::class, 'index']);
+Route::group([
+    'prefix' => 'v1'
+], function () {
+    Route::get('/companies/{uuid}', [CompanyApiController::class, 'show']);
+    Route::get('/companies', [CompanyApiController::class, 'index']);
 
-Route::get('/categories/{url}', [CategoryApiController::class, 'show']);
-Route::get('/categories', [CategoryApiController::class, 'getCategoryByCompany']);
+    Route::get('/categories/{url}', [CategoryApiController::class, 'show']);
+    Route::get('/categories', [CategoryApiController::class, 'getCategoryByCompany']);
 
-Route::get('/tables/{identify}', [TableApiController::class, 'show']);
-Route::get('/tables', [TableApiController::class, 'getTablesByCompany']);
+    Route::get('/tables/{identify}', [TableApiController::class, 'show']);
+    Route::get('/tables', [TableApiController::class, 'getTablesByCompany']);
 
-Route::get('/products/{url}', [ProductApiController::class, 'show']);
-Route::get('/products', [ProductApiController::class, 'getProductsByCompany']);
+    Route::get('/products/{url}', [ProductApiController::class, 'show']);
+    Route::get('/products', [ProductApiController::class, 'getProductsByCompany']);
+
+    Route::get('/client/{id}', [RegisterController::class, 'show']);
+    Route::post('/client', [RegisterController::class, 'store']);
+});
