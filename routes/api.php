@@ -21,4 +21,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/companies/{uuid}', [CompanyApiController::class, 'show']);
 Route::get('/companies', [CompanyApiController::class, 'index']);
 
+Route::get('/categories/{url}', [CategoryApiController::class, 'show']);
 Route::get('/categories', [CategoryApiController::class, 'getCategoryByCompany']);

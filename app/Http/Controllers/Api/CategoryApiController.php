@@ -19,21 +19,21 @@ class CategoryApiController extends Controller
 
     public function getCategoryByCompany(CompanyFormRequest $request)
     {
-        // if(!$request->token_company)
-        // {
-        //     return response()->json(['message' => 'Token Not Found'], 404);
-        // }
+        if(!$request->token_company)
+        {
+            return response()->json(['message' => 'Token Not Found'], 404);
+        }
         $categories = $this->categoryService->getCategoriesByCompanyUuid($request->token_company);
         return CategoryResource::collection($categories);
     }
 
-    // public function show(CompanyFormRequest $request, $url)
-    // {
-    //     if(!$category = $this->categoryService->getCategoryByUrl($url))
-    //     {
-    //         return response()->json(['Category Not Found'], 404);
-    //     }
+    public function show(CompanyFormRequest $request, $url)
+    {
+        if(!$category = $this->categoryService->getCategoryByUrl($url))
+        {
+            return response()->json(['Category Not Found'], 404);
+        }
 
-    //     return new CategoryResource($category);
-    // }
+        return new CategoryResource($category);
+    }
 }

@@ -29,4 +29,9 @@ class CategoryRepository implements CategoryRepositoryInterface
     {
         return DB::table($this->table)->where('company_id', $idCompany)->get();
     }
+
+    public function getCategoryByUrl(string $url)
+    {
+        return DB::table($this->table)->where('url', $url)->first();
+    }
 }

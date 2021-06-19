@@ -25,7 +25,7 @@ class CompanyFormRequest extends FormRequest
     {
         return [
             'token_company' => [
-                'required|exists:companies,uuid']
+                'required','exists:companies,uuid']
         ];
     }
 }
