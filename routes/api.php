@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\Api\{
     CategoryApiController,
-    CompanyApiController
+    CompanyApiController,
+    TableApiController
 };
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,3 +24,6 @@ Route::get('/companies', [CompanyApiController::class, 'index']);
 
 Route::get('/categories/{url}', [CategoryApiController::class, 'show']);
 Route::get('/categories', [CategoryApiController::class, 'getCategoryByCompany']);
+
+Route::get('/tables/{identify}', [TableApiController::class, 'show']);
+Route::get('/tables', [TableApiController::class, 'getTablesByCompany']);
