@@ -4,26 +4,31 @@ namespace App\Services;
 
 use App\Repositories\Contracts\CompanyRepositoryInterface;
 use App\Repositories\Contracts\OrderRepositoryInterface;
+use App\Repositories\Contracts\ProductRepositoryInterface;
 use App\Repositories\Contracts\TableRepositoryInterface;
 
 class OrderService
 {
 
-    protected $orderRepository, $companyRepository, $tableRepository;
+    protected $orderRepository, $companyRepository, $tableRepository, $productRepository;
 
     public function __construct(
         OrderRepositoryInterface $orderRepository,
         CompanyRepositoryInterface $companyRepository,
-        TableRepositoryInterface $tableRepository) {
+        TableRepositoryInterface $tableRepository,
+        ProductRepositoryInterface $productRepository) {
         $this->orderRepository = $orderRepository;
         $this->companyRepository = $companyRepository;
         $this->tableRepository = $tableRepository;
+        $this->productRepository = $productRepository;
     }
 
     public function createNewOrder(array $order)
     {
+        $productsOrder = $this->getProductsByOrder($order['products'] ?? []);
+
         $identify = $this->getIdentifyOrder();
-        $total = $this->totalOrder([]);
+        $total = $this->totalOrder($productsOrder);
         $status = 'open';
         $company = $this->getCompanyOrder($order['token_company']);
         $comment = isset($order['comment']) ? $order['comment'] : '';
@@ -65,7 +70,28 @@ class OrderService
 
     private function totalOrder(array $products): float
     {
-        return (float) 90;
+        $total = 0;
+
+        foreach ($products as $product) {
+            $total += ($product['price'] * $product['qty']);
+        }
+
+        return (float) $total;
+    }
+
+    private function getProductsByOrder(array $productsOrder)
+    {
+        $products = [];
+        foreach ($productsOrder as $productOrder) {
+            //busca o identificador do produto
+            $product = $this->productRepository->getProductByUuid($productOrder['identify']);
+            array_push($products, [
+                'id' => $product->id, 
+                'qty' => $productOrder['qty'],
+                'price' => $product->price
+            ]);
+        }
+        return $products;
     }
 
     private function getCompanyOrder(string $uuid)
