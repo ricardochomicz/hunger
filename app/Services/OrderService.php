@@ -54,6 +54,11 @@ class OrderService
 
         $identify = substr(str_shuffle($characters), 0, $qtyCharacters);
 
+        //verifica se já existe número pedido cadastrado
+        if($this->orderRepository->getOrderByIdentify($identify)){
+            $this->getIdentifyOrder($qtyCharacters + 1);
+        }   
+
         return $identify;
         
     }
