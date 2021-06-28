@@ -6,6 +6,7 @@ use App\Repositories\{
     CategoryRepository,
     ClientRepository,
     CompanyRepository,
+    EvaluationRepository,
     OrderRepository,
     ProductRepository,
     TableRepository
@@ -15,6 +16,7 @@ use App\Repositories\Contracts\{
     CategoryRepositoryInterface,
     ClientRepositoryInterface,
     CompanyRepositoryInterface,
+    EvaluationRepositoryInterface,
     OrderRepositoryInterface,
     ProductRepositoryInterface,
     TableRepositoryInterface
@@ -59,6 +61,11 @@ class RespositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             OrderRepositoryInterface::class,
             OrderRepository::class
+        );
+
+        $this->app->bind(
+            EvaluationRepositoryInterface::class,
+            EvaluationRepository::class
         );
     }
 
