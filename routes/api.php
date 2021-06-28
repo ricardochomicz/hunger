@@ -30,6 +30,8 @@ Route::group([
 ], function () {
     Route::get('/auth/me', [AuthClientController::class, 'me']);
     Route::post('/auth/logout', [AuthClientController::class, 'logout']);
+
+    Route::post('/auth/v1/order', [OrderApiController::class, 'store']);
 });
 
 

@@ -62,6 +62,7 @@
                 {!! $permissions->appends($filters)->links() !!}
             @else
                 {!! $permissions->link() !!}
+                @endif
         </div>
     </div>
 @stop
