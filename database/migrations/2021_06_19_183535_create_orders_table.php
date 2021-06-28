@@ -15,14 +15,14 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('company_id');
             $table->uuid('uuid');
             $table->string('identify')->unique();
             $table->integer('client_id')->nullable();
             $table->integer('table_id')->nullable();
             $table->double('total', 10, 2);
-            $table->enum('status', ['open', 'rejected', 'working', 'canceled', 'delivering']);
-            $table->text('comment')->nullable();
-            $table->unsignedBigInteger('company_id');
+            $table->enum('status', ['open', 'done', 'rejected', 'working', 'canceled', 'delivering']);
+            $table->text('comment')->nullable();            
             $table->timestamps();
 
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');

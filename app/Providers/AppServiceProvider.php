@@ -5,12 +5,14 @@ namespace App\Providers;
 use App\Models\Category;
 use App\Models\Client;
 use App\Models\Company;
+use App\Models\Order;
 use App\Models\Plan;
 use App\Models\Product;
 use App\Models\Table;
 use App\Observers\CategoryObserver;
 use App\Observers\ClientObserver;
 use App\Observers\CompanyObserver;
+use App\Observers\OrderObserver;
 use App\Observers\PlanObserver;
 use App\Observers\ProductObserver;
 use App\Observers\TableObserver;
@@ -45,5 +47,6 @@ class AppServiceProvider extends ServiceProvider
         Product::observe(ProductObserver::class);
         Client::observe(ClientObserver::class);
         Table::observe(TableObserver::class);
+        Order::observe(OrderObserver::class);
     }
 }

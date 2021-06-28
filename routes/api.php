@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\{
     CategoryApiController,
     CompanyApiController,
+    OrderApiController,
     ProductApiController,
     TableApiController
 };
@@ -49,4 +50,7 @@ Route::group([
 
     Route::get('/client/{uuid}', [RegisterController::class, 'show']);
     Route::post('/client', [RegisterController::class, 'store']);
+
+    Route::get('/order/{identify}', [OrderApiController::class, 'show']);
+    Route::post('/order', [OrderApiController::class, 'store']);
 });

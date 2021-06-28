@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Permission;
 use App\Models\Plan;
 use Illuminate\Database\Seeder;
 
@@ -14,11 +15,18 @@ class PlansTableSeeder extends Seeder
      */
     public function run()
     {
-        Plan::create([
+        $businnes = Plan::create([
             'name' => 'Businnes',
             'url' => 'businnes',
             'price' => 499.99,
             'description' => 'Plano Master'
+        ]);
+
+        $free = Plan::create([
+            'name' => 'Free',
+            'url' => 'free',
+            'price' => 0.00,
+            'description' => 'Plano Free'
         ]);
     }
 }
