@@ -32,6 +32,8 @@ Route::group([
     Route::post('/auth/logout', [AuthClientController::class, 'logout']);
 
     Route::post('/auth/v1/order', [OrderApiController::class, 'store']);
+
+    Route::get('/auth/v1/my-orders', [OrderApiController::class, 'myOrders']);
 });
 
 
